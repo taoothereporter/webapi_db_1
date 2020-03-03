@@ -1,0 +1,156 @@
+<div class="page">
+  <div class="page-main">
+
+    <div class="header py-4">
+
+      <div class="container">
+
+        <div class="d-flex">
+          <a class="header-brand" href="./index.html">
+            <img src="../../assets/images/logo.png" class="header-brand-img" alt="tabler logo">
+          </a>
+
+          <div class="d-flex order-lg-2 ml-auto">
+
+            <div class="dropdown">
+
+              <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
+
+                  <span class="avatar" [ngStyle]="{ 'background-image': 'url(' + currentUser.photoUrl + ')'}"></span>
+
+                  <span class="ml-2 d-none d-lg-block">
+                      <span class="text-default">{{ currentUser.name }}</span>
+                      <small class="text-muted d-block mt-1">{{ currentUser.email }}</small>
+                  </span>
+              </a>
+
+              <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+
+                  <a class="dropdown-item" href="#">
+                      <i class="dropdown-icon fe fe-pie-chart"></i> KPI Dashboard
+                  </a>    
+
+                  <a class="dropdown-item" href="#">
+                      <i class="dropdown-icon fe fe-help-circle"></i> Need help?
+                  </a>
+
+                  <div class="dropdown-divider"></div>
+
+                  <a class="dropdown-item" (click)="signOut()">
+                      <i class="dropdown-icon fe fe-log-out"></i> Sign out
+                  </a>
+
+              </div>
+              
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="my-3 my-md-5">
+
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-12">
+
+            <div class="card">
+
+              <div class="card-header">
+
+                <div class="btn-list">
+
+                  <button class="btn btn-primary" (click)="selectYear(kpi)" *ngFor="let kpi of rootObject.dashboardData;">{{kpi.year}}</button>
+
+                </div>
+
+              </div>
+
+              <div class="card-body">
+
+                <div class="row">
+
+                  <div class="col-md-6 col-lg-4">
+
+                    <ngx-charts-pie-grid
+                      [view]="view"
+                      [results]="circle1Data(selectedYear.circle1)">
+                    </ngx-charts-pie-grid>
+
+                  </div>
+
+                  <div class="col-md-6 col-lg-4">
+
+                    <ngx-charts-pie-grid
+                      [view]="view"
+                      [results]="circle2Data(selectedYear.circle2)">
+                    </ngx-charts-pie-grid>
+
+                  </div>
+
+                  <div class="col-md-6 col-lg-4">
+
+                    <div *ngFor="let category of selectedYear.categories;">
+
+                      <div class="clearfix">
+                        <div class="float-left">
+                          <strong>{{ category.title }}</strong>
+                        </div>  
+                      </div>
+
+                      <div class="progress progress-xs my-3">
+                        <div class="progress-bar bg-yellow" role="progressbar" [ngStyle]="setMyStyles(category.value, category.maxValue)"></div>
+                      </div>
+  
+                    </div>
+
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+      
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row align-items-center flex-row-reverse">
+        <div class="col-auto ml-lg-auto">
+          <div class="row align-items-center">
+            <div class="col-auto">
+              <ul class="list-inline list-inline-dots mb-0">
+                <li class="list-inline-item"><a href="./docs/index.html">Documentation</a></li>
+                <li class="list-inline-item"><a href="./faq.html">FAQ</a></li>
+              </ul>
+            </div>
+            <div class="col-auto">
+              <a href="https://github.com/tabler/tabler" class="btn btn-outline-primary btn-sm">Source code</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
+          Copyright © 2018 <a href=".">Tabler</a>. Theme by <a href="https://codecalm.net" target="_blank">codecalm.net</a> All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
